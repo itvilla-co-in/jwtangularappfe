@@ -22,7 +22,7 @@ export class TokenStorageService {
     //window.localStorage.setItem(TOKEN_KEY, token);
   }
 
-  public getToken(): string {
+  public getToken(): String {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 

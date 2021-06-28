@@ -5,6 +5,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { TokenStorageService } from 'src/app/login/service/token-storage.service';
 import { UserService } from 'src/app/login/service/user.service';
+import { CustomHttpRespone } from 'src/app/model/custom-http-response';
 import { FileUploadStatus } from 'src/app/model/file-upload.status';
 import { User } from 'src/app/model/user';
 
@@ -47,8 +48,8 @@ export class EdituserComponent implements OnInit, OnDestroy {
           this.fileName = null;
           this.profileImage = null;
         },
-        (errorResponse: HttpErrorResponse) => {
-           
+        (error: HttpErrorResponse) => {
+           window.alert(error.error.message);
         }
       )
       );

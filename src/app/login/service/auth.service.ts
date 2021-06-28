@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenStorageService } from './token-storage.service';
 import { User } from 'src/app/model/user';
+import { environment } from 'src/environments/environment';
 
 const LOGIN_API = 'http://localhost:9191/';
 
@@ -19,6 +20,8 @@ const httpOptions = {
 })
 export class AuthService {
 
+  public host = environment.myapiUrl;
+  private jtoken: string;
 
   // TOken Auth - libraty - npm i @auth0/angular-jwt
   // crete a jwt helper private jwthelper = new JwtHelperService()
@@ -56,6 +59,7 @@ export class AuthService {
       return true;
     }
     else {
+      //console.log("user is not logged in");
     return false;
     }
   
@@ -67,8 +71,23 @@ export class AuthService {
   }
 
   public getUserRole(): String {
-    console.log(JSON.stringify(this.getUserFromLocalCache()));
-    return this.getUserFromLocalCache().role;
+    //console.log(JSON.stringify(this.getUserFromLocalCache()));
+          if(this.isuserLoggedin()) {
+            //console.log("calling from auth service checking for isloggedin");
+          return this.getUserFromLocalCache().role;
+        } else {
+          return null;
+        }
   }
 
+  public loadToken(): void {
+    //this.jtoken = localStorage.getItem('token');
+    this.jtoken = sessionStorage.getItem('auth-token');
+  }
+
+  public getToken(): string {
+    return this.jtoken;
+  }
+
+  
 }

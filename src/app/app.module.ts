@@ -7,13 +7,14 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { MainmenuComponent } from './navigation/mainmenu/mainmenu.component';
 import { LoginModule } from './login/login.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserlistComponent } from './navigation/userlist/userlist.component';
 import { HomeComponent } from './navigation/home/home.component';
 import { ChangepComponent } from './navigation/changep/changep.component';
 import { EdituserComponent } from './navigation/userlist/edituser/edituser.component';
 import { AdduserComponent } from './navigation/userlist/adduser/adduser.component';
+import { AuthInterceptor } from './login/service/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { AdduserComponent } from './navigation/userlist/adduser/adduser.componen
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
