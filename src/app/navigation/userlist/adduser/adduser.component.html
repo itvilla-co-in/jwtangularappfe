@@ -1,0 +1,72 @@
+ 
+ <h2 mat-dialog-title>Adding new USER</h2>
+ <mat-dialog-content class="mat-typography">
+  
+
+ <!-- {{ editUsertemp | json }}-->
+ <!-- {{ editUser | json }} -->  
+ <div class="modal-body">
+  <div class="">
+    <form #newUserForm="ngForm" (ngSubmit)="onaddUser(newUserForm)">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" required ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" required ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" required ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" required ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="authority">Role <small>(read only)</small></label>
+        <select name="role" required ngModel="ROLE_USER" class="form-control">
+            <option value="ROLE_USER">USER</option>
+            <option value="ROLE_MANAGER">MANAGER</option>
+            <option value="ROLE_ADMIN">ADMIN</option>        
+          </select>
+      </div>
+ 
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Profile Picture </span>
+        </div>
+        <div class="custom-file">
+          <input type="file" accept="image/*" name="profileImage"
+          (change)="onProfileImageChange($event.target.files[0].name, $event.target.files[0])"
+            class="custom-file-input">
+          <label class="custom-file-label"><span [hidden]="!fileName">{{ fileName }}</span>
+            <span [hidden]="fileName">Choose File</span>
+          </label>
+        </div>
+      </div>
+     
+      <fieldset class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" name="active" ngModel class="form-check-input" >
+            Acitve
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <label class="form-check-label">
+            <input type="checkbox" name="notLocked" ngModel class="form-check-input">
+            Unlocked
+          </label>
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-secondary" id="new-user-save">Submit</button>
+      <button type="button" class="btn btn-secondary" id="closeEditUserModalButton"  (click)="onNoClick()">Close</button>
+    </form>
+  </div>
+</div>
+<div>
+  
+</div>
+</mat-dialog-content>

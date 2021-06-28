@@ -1,0 +1,41 @@
+<div class="container-fluid menu">
+ 
+  
+    <!-- nav bar 
+    <nav class="navbar navbar-expand-md breadcrumb">
+   -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top w-100">
+    <a class="navbar-brand" [routerLink]="'apphome'">JWTDemo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" [routerLink]="'apphome'">Home</a>
+        <a class="nav-item nav-link" [routerLink]="'users'">Users</a>
+        <a class="nav-item nav-link" href="#">Change Password</a>
+         
+        
+        <a class="nav-item nav-link" *ngIf="!isLoggedtutIn" [routerLink]="'/loginserv/home'"> Login/Signup</a>
+        <a class="nav-item nav-link" *ngIf="isLoggedtutIn"  (click)="logoutfromtut()">Logout</a>
+        <a class="nav-item nav-link spacer" href="#"> Hello , {{user?.firstName}}</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="row mb-2 mt-2 text-center">
+    
+    <div class="col-md-12">
+      <h5 style="display: inline;"> Itvilla Portal. You are @ </h5> <span style="display: inline;">
+      <small *ngIf="finaltitle | async as title">{{ title }}</small> </span>
+    </div>
+     
+  </div>
+
+
+</div>
+
+ <!-- main content -->
+ <div class="tab-content mt-3" id="myTabContent">
+<router-outlet></router-outlet>
+</div>
